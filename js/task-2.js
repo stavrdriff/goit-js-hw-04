@@ -4,7 +4,11 @@ const calcAverageCalories = (array = []) => {
   let totalCountKeysValue = 0;
 
   for (const item of array) {
-    item.calories ? totalCountKeysValue += item.calories : 0;
+    for (const key in item) {
+      if (Object.hasOwnProperty.call(item, key)) {
+        key === 'calories' ? totalCountKeysValue += item[key] : 0;
+      }
+    }
   }
 
   return array.length ? totalCountKeysValue / array.length : 0;
